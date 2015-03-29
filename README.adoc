@@ -4,7 +4,7 @@
 
 A pluggable impressive elastic query DSL builder for elasticsearch (es). It aims to be a part of new monitoring/sense tools or existing ones. Thus, in the absence of constructing inline queries in es, the complexity of writing a query DSL can be minimized in the light of this extension. Pes basically helps in building time-saving queries with regards to the available bunch of aliases, so that even you need to make complex and complicated queries, Pes gives you fully controllable query language to boost your queries.
 
-As mentioned, Pes supports several abbreviations. When these handy expressions are in action with a few punctuations, Pes builds the corresponding structured query blocks along with pairs that elasticsearch provides. Additionally, Pes contains two functions to handle output as `string` or ``array``.
+As mentioned, Pes supports several abbreviations. When these handy expressions are in action with a few punctuations, Pes builds the corresponding structured query blocks along with pairs that elasticsearch provides. Additionally, Pes contains two functions to handle output as `string` or `array`.
 
 == How it works
 
@@ -15,7 +15,7 @@ This extension is eligible to be integrated into any web-based editor which enab
 bower install pes
 ----
 
-After linking the library (``pes.js`` or ``pes.pack.js``) on a web page, you can use the existing two functions namely `queriesToArray` and `queriesToString` to manipulate the output:
+After linking the library (`pes.js` or `pes.pack.js`) on a web page, you can use the existing two functions namely `queriesToArray` and `queriesToString` to manipulate the output:
 
 [source,html]
 ----
@@ -55,11 +55,11 @@ Two console logs return as follows:
 
 For more details, please look at the link:test/queries.js[test,window="_blank"] cases located in the test folder. This is indeed useful to digest all the existing expressions Pes provides. 
 
-Nested query blocks along with key:value pairs can be easily created in one line. What is important to note is that, you can override the default values of members such as ``size``, ``explain``, ``_source``, ``zero_terms_query``, `operator` and suchlike, bu using `key{new_value}` syntax. the `new_value` can be string, number, array, true, false, or null. You will see this behavior in the 3rd and 4th examples.
+Nested query blocks along with key:value pairs can be easily created in one line. What is important to note is that, you can override the default values of members such as `size`, `explain`, `_source`, `zero_terms_query`, `operator` and suchlike, bu using `key{new_value}` syntax. the `new_value` can be string, number, array, true, false, or null. You will see this behavior in the 3rd and 4th examples.
 
-Next to this, if you want to use more than one types into to `match` (``m`` alias) and `match_phrase_prefix` (``mpp`` alias) queries rather than using their default behaviour, `:p` comes into play to provide nested types like ``m:p[qy]``, ``mpp:p[qy,op,me]``. They will be generated as follows:
+Next to this, if you want to use more than one types into to `match` (`m` alias) and `match_phrase_prefix` (`mpp` alias) queries rather than using their default behaviour, `:p` comes into play to provide nested types like `m:p[qy]`, `mpp:p[qy,op,me]`. They will be generated as follows:
 
-[source,json]
+[source,xml]
 ----
 "match": {
   "FIELD": {
@@ -91,7 +91,7 @@ Note that, [o] and [a] can be used to create an empty object and array respectiv
 
 === 1. Example
 
-[source,json]
+[source,text]
 ----
 {
     q[mpp:p[query]]
@@ -114,7 +114,7 @@ Note that, [o] and [a] can be used to create an empty object and array respectiv
 === 2. Example
 
 
-[source,json]
+[source,text]
 ----
 {
    q[b[shouldN[o[m],o[m]]]]
@@ -145,7 +145,7 @@ Note that, [o] and [a] can be used to create an empty object and array respectiv
 
 === 3. Example
 
-[source,json]
+[source,text]
 ----
 {
     q[bool[mustN[o[range[gte{1}]]],shouldN[o[range[gt{1955}]]]]]
@@ -182,7 +182,7 @@ Note that, [o] and [a] can be used to create an empty object and array respectiv
 
 === 4. Example
 
-[source,json]
+[source,text]
 ----
 {
     q[m:p[qy{"hi elastic query"},op{"or"},ztq]],sz,bst,src{["_id","surname"]},exp{true}
