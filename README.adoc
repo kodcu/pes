@@ -1,0 +1,1 @@
+= An elastic query DSL builder for elasticsearch
