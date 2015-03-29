@@ -1,1 +1,219 @@
-= An elastic query DSL builder for elasticsearch
+:linkattrs:
+
+== An elastic query DSL builder for elasticsearch
+
+A pluggable impressive elastic query DSL builder for elasticsearch (es). It aims to be a part of new monitoring/sense tools or existing ones. Thus, in the absence of constructing inline queries in es, the complexity of writing a query DSL can be minimized in the light of this extension. Pes basically helps in building time-saving queries with regards to the available bunch of aliases, so that even you need to make complex and complicated queries, Pes gives you fully controllable query language to boost your queries.
+
+As mentioned, Pes supports several abbreviations. When these handy expressions are in action with a few punctuations, Pes builds the corresponding structured query blocks along with pairs that elasticsearch provides. Additionally, Pes contains two functions to handle output as `string` or ``array``.
+
+== How it works
+
+This extension is eligible to be integrated into any web-based editor which enables us to contruct queries. To do so, you can get it by either `cloning` or using `bower`. Using bower comes with twofold: first you get the source code, secondly you can easily test all the available expressions since we use https://qunitjs.com/[QUnit] framework as a test dependency.
+
+[source,bash]
+----
+bower install pes
+----
+
+After linking the library (``pes.js`` or ``pes.pack.js``) on a web page, you can use the existing two functions namely `queriesToArray` and `queriesToString` to manipulate the output:
+
+[source,html]
+----
+<script src="/path/to/pes.pack.js"></script>
+or
+<script src="/path/to/pes.js"></script>
+..
+<script>
+
+var outputStr = pes.queriesToString('q[m]');
+
+var outputArray = pes.queriesToArray('q[mpp]'));
+
+console.log(outputStr);
+
+console.log(outputArray);
+</script>
+----
+
+Two console logs return as follows:
+[source,text]
+----
+"query": {
+  "match": {
+    "FIELD": "TEXT"
+  }
+}
+
+["\"query\": {", 
+ "  \"match_phrase_prefix\": {", 
+ "    \"FIELD\": \"TEXT\"", 
+ "  }", 
+ "}"]
+----
+
+== Examples
+
+For more details, please look at the link:test/queries.js[test,window="_blank"] cases located in the test folder. This is indeed useful to digest all the existing expressions Pes provides. 
+
+Nested query blocks along with key:value pairs can be easily created in one line. What is important to note is that, you can override the default values of members such as ``size``, ``explain``, ``_source``, ``zero_terms_query``, `operator` and suchlike, bu using `key{new_value}` syntax. the `new_value` can be string, number, array, true, false, or null. You will see this behavior in the 3rd and 4th examples.
+
+Next to this, if you want to use more than one types into to `match` (``m`` alias) and `match_phrase_prefix` (``mpp`` alias) queries rather than using their default behaviour, `:p` comes into play to provide nested types like ``m:p[qy]``, ``mpp:p[qy,op,me]``. They will be generated as follows:
+
+[source,json]
+----
+"match": {
+  "FIELD": {
+    "query": "TEXT"
+  }
+}
+
+
+"match_phrase_prefix": {
+  "FIELD": {
+    "query": "TEXT",
+    "operator": "and",
+    "max_expansions": 10
+  }
+}
+
+// rather the default characteristics of the two queries ([m | mpp]):
+
+"match": {
+  "FIELD": "TEXT"
+}
+
+"match_phrase_prefix": {
+  "FIELD": "TEXT"
+}
+----
+
+Note that, [o] and [a] can be used to create an empty object and array respectively. The 2nd and 3rd examples illustrate how to use [o] while writing a pes query.
+
+=== 1. Example
+
+[source,json]
+----
+{
+    q[mpp:p[query]]
+}
+----
+
+[source,json]
+----
+{
+    "query": {
+      "match_phrase_prefix": {
+        "FIELD": {
+          "query": "TEXT"
+        }
+      }
+    }  
+}
+----
+
+=== 2. Example
+
+
+[source,json]
+----
+{
+   q[b[shouldN[o[m],o[m]]]]
+}
+----
+
+[source,json]
+----
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "FIELD": "TEXT"
+          }
+        },
+        {
+          "match": {
+            "FIELD": "TEXT"
+          }
+        }
+      ]
+    }
+  }
+}
+----
+
+=== 3. Example
+
+[source,json]
+----
+{
+    q[bool[mustN[o[range[gte{1}]]],shouldN[o[range[gt{1955}]]]]]
+}
+----
+
+[source,json]
+----
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "range": {
+            "FIELD": {
+              "gte": 1
+            }
+          }
+        }
+      ],
+      "should": [
+        {
+          "range": {
+            "FIELD": {
+              "gt": 1955
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+----
+
+=== 4. Example
+
+[source,json]
+----
+{
+    q[m:p[qy{"hi elastic query"},op{"or"},ztq]],sz,bst,src{["_id","surname"]},exp{true}
+}
+----
+
+[source,json]
+----
+{
+  "query": {
+    "match": {
+      "FIELD": {
+        "query": "hi elastic query",
+        "operator": "or",
+        "zero_terms_query": "none"
+      }
+    }
+  },
+  "size": 10,
+  "boost": 1,
+  "_source": [
+    "_id",
+    "surname"
+  ],
+  "explain": true
+}
+----
+
+
+== Contributing
+
+This extension just publised, so all ideas are always welcome and valuable. Feel free to open an https://github.com/kodcu/pes/issues/new[issue] and make a PR.
+
+
