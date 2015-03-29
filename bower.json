@@ -1,0 +1,31 @@
+{
+  "name": "pes",
+  "main": "pes.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/kodcu/pes",
+  "description": "A pluggable impressive elastic query DSL builder for elasticsearch",
+  "authors": [
+    "huseyin.akdogan@kodcu.com",
+    "ozler.hakan@gmail.com",
+    "rahmanusta@kodcu.com"
+  ],
+  "keywords": [
+    "elasticsearch",
+    "extension",
+    "builder",
+    "elastic",
+    "search",
+    "query",
+    "json",
+    "dsl",
+    "pes"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "qunit": "~1.17.1"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ]
+}
