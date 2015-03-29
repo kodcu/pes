@@ -8,8 +8,7 @@ As mentioned, Pes supports several abbreviations. When these handy expressions a
 
 == How it works
 
-This extension is eligible to be integrated into any web-based editor which enables us to contruct queries. To do so, you can get it by either `cloning` or using `bower`. Using bower comes with twofold: first you get the source code, secondly you can easily test all the available expressions since we use https://qunitjs.com/[QUnit] framework as a test dependency.
-
+This extension is eligible to be integrated into any web-based editor which enables us to contruct queries. To do so, you can get it by either `cloning` or using `bower`. Either way comes with twofold: first you get the source code, secondly you can easily test all the available expressions after installing the test dependency called https://qunitjs.com/[QUnit] framework via `bower install`.
 [source,bash]
 ----
 bower install pes
@@ -214,6 +213,6 @@ Note that, [o] and [a] can be used to create an empty object and array respectiv
 
 == Contributing
 
-This extension just publised, so all ideas are always welcome and valuable. Feel free to open an https://github.com/kodcu/pes/issues/new[issue] and make a PR.
+This extension just published, so all ideas are always welcome and valuable. Feel free to open an https://github.com/kodcu/pes/issues/new[issue] and make a PR.
 
 
