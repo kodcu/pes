@@ -8,11 +8,20 @@ As mentioned, Pes supports several abbreviations. When these handy expressions a
 
 == How it works
 
-This extension is eligible to be integrated into any web-based editor which enables us to contruct queries. To do so, you can get it by either `cloning` or using `bower`. Either way comes with twofold: first you get the source code, secondly you can easily test all the available expressions after installing the test dependency called https://qunitjs.com/[QUnit] framework via `bower install`.
+This extension is eligible to be integrated into any web-based editor which enables us to contruct queries. To do so, you can get it by either `cloning`: 
+
 [source,bash]
 ----
-bower install pes
+$ git clone https://github.com/kodcu/pes
 ----
+
+or using `bower`:
+[source,bash]
+----
+$ bower install pes
+----
+
+Either way comes with twofold: first you get the source code, secondly you can easily test all the available expressions after installing the test dependency called https://qunitjs.com/[QUnit] framework via `bower install`.
 
 After linking the library (`pes.js` or `pes.pack.js`) on a web page, you can use the existing two functions namely `queriesToArray` and `queriesToString` to manipulate the output:
 
@@ -52,9 +61,9 @@ Two console logs return as follows:
 
 == Examples
 
-For more details, please look at the link:test/queries.js[test,window="_blank"] cases located in the test folder. This is indeed useful to digest all the existing expressions Pes provides. 
+Pes includes `query` (abbr. `q`), `match` (`m`), `match_phrase` (`mp`), `match_phrase_prefix` (`mpp`), `match_all` (`ma`) ,`multi_match` (`mm`), `dis_max` (`dm`), `bool` (`b`, `bool`), and `range` (`range`) queries for now. For more details, please look at the link:test/queries.js[test,window="_blank"] cases located in the test folder. This is indeed useful to digest all the existing expressions Pes provides. 
 
-Nested query blocks along with key:value pairs can be easily created in one line. What is important to note is that, you can override the default values of members such as `size`, `explain`, `_source`, `zero_terms_query`, `operator` and suchlike, bu using `key{new_value}` syntax. the `new_value` can be string, number, array, true, false, or null. You will see this behavior in the 3rd and 4th examples.
+Nested query blocks along with key:value pairs can be easily created in one line. What is important to note is that, you can override the default values of members such as `size`, `explain`, `_source`, `zero_terms_query`, `operator` and suchlike, using `key{new_value}` syntax. the `new_value` can be string, number, array, true, false, or null. You will see this behavior in the 3rd and 4th examples.
 
 Next to this, if you want to use more than one types into to `match` (`m` alias) and `match_phrase_prefix` (`mpp` alias) queries rather than using their default behaviour, `:p` comes into play to provide nested types like `m:p[qy]`, `mpp:p[qy,op,me]`. They will be generated as follows:
 
