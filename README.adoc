@@ -225,3 +225,6 @@ Note that, [o] and [a] can be used to create an empty object and array respectiv
 This extension just published, so all ideas are always welcome and valuable. Feel free to open an https://github.com/kodcu/pes/issues/new[issue] and make a PR.
 
 
+== License
+
+Pes is released under the MIT License. See LICENSE file for details.
