@@ -1,8 +1,8 @@
 :linkattrs:
 
-== An elastic query DSL builder for elasticsearch
+== An elastic query DSL builder for Elasticsearch
 
-A pluggable impressive elastic query DSL builder for elasticsearch (es). It aims to be a part of new monitoring/sense tools or existing ones. Thus, in the absence of constructing inline queries in es, the complexity of writing a query DSL can be minimized in the light of this extension. Pes basically helps in building time-saving queries with regards to the available bunch of aliases, so that even you need to make complex and complicated queries, Pes gives you fully controllable query language to boost your queries.
+Pes, formally being part of the Elasticsearch http://www.elastic.co/guide/en/elasticsearch/client/community/current/misc.html[Community], is a pluggable impressive elastic query DSL builder for elasticsearch (es). It aims to be a part of new monitoring/sense tools or existing ones. Thus, in the absence of constructing inline queries in es, the complexity of writing a query DSL can be minimized in the light of this extension. Pes basically helps in building time-saving queries with regards to the available bunch of aliases, so that even you need to make complex and complicated queries, Pes gives you fully controllable query language to boost your queries.
 
 As mentioned, Pes supports several abbreviations. When these handy expressions are in action with a few punctuations, Pes builds the corresponding structured query blocks along with pairs that elasticsearch provides. Additionally, Pes contains two functions to handle output as `string` or `array`.
 
